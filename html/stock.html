@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Cek Stok</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <link rel="stylesheet" type="text/css" href="/form.css">
+      <!-- ntar css di href ilangin  -->
+
+      <div class='header'>
+        <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+        <div class='header-right'>
+          <a class='active' href='form.html'>Penyewaan</a>
+          <a href='return.html'>Pengembalian</a>
+          <div class="dropdown">
+            <span>Stok & Barang</span>
+            <div class="dropdown-content">
+              <a class='option' href='stock.html'>Cek Stok</a><br>
+              <a class='option' href='input.html'>Update Barang</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span>Barang Rusak</span>
+            <div class="dropdown-content">
+              <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+              <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+            </div>
+          </div>
+          <a href='file.html'>Buat File Rekap</a>
+        </div>
+      </div>
+  </head>
+
+
+  <body>
+    <div class="main">
+      <div class="container">
+        <h1>Cek Stok Barang</h1>
+        <form class="" action="/html/check_table.html" method="post">
+          <div class="col-50">
+            <select class="col-50" name="gear">
+              <option name="nul" >-</option>
+            </select><br><br>
+            Banyaknya item : <input type="number" name="banyaknyaitem" value="0">
+            <br><br>
+            <div class="row">
+              <div class="col-50">
+                <label for="rndate"><i class="fa fa-date"></i>Tanggal Penyewaan (Pengambilan)</label>
+                <input type="date" id="rndate" name="rentdate" placeholder="">
+              </div>
+              <div class="col-50">
+                <label for="rtdate"><i class="fa fa-date"></i>Tanggal Pengembalian</label>
+                <input type="date" id="rtdate" name="returndate" placeholder="">
+              </div>
+            </div>
+          </div><br>
+          <input type="submit" name="" value="Cek Gear" class="btn">
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+        <h4>List Gear
+          <span class="price" style="color:black">
+            <i class="fa fa-shopping-cart"></i>
+            <b>Harga</b>
+          </span>
+        </h4>
+        <div4>
+          <!--diisi list harga-->
+        </div4>
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      </div>
+    </div>
+
+
+    <div class='copyright'> Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.</div>
+  </body>
+
+</html>

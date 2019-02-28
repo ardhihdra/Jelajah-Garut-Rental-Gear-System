@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Form Penyewaan JG Gear</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <link rel='stylesheet' type='text/css' href='/form.css'>
+      <!--  -->
+
+      <div class='header'>
+        <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+        <div class='header-right'>
+          <a class='active' href='form.html'>Penyewaan</a>
+          <a href='return.html'>Pengembalian</a>
+          <div class="dropdown">
+            <span>Stok & Barang</span>
+            <div class="dropdown-content">
+              <a class='option' href='stock.html'>Cek Stok</a><br>
+              <a class='option' href='input.html'>Update Barang</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span>Barang Rusak</span>
+            <div class="dropdown-content">
+              <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+              <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+            </div>
+          </div>
+          <a href='file.html'>Buat File Rekap</a>
+        </div>
+      </div>
+  </head>
+  <body>
+    <div class='main'>
+      <div class='container'>
+        <form action='/html/form.html' method='post' name='form1'>
+          <div class='row'>
+            <div class='col-50'>
+              <table style='width:100%' class='div1'>
+                <tr>
+
+
+                      <!-- info penyewa -->
+                </tr>
+              </table>
+
+              <table style='width:100%' class='div2'>
+                <!-- info barang -->
+                  <tr>
+                    <th>Nama Alat</th>
+                    <th>Kuantiti</th>
+                    <th>Harga Sewa</th>
+                    <th>Lama Sewa</th>
+                    <th>Jumlah Harga</th>
+                  </tr>
+              </table>
+
+              <table style='width:100%' class='div3'>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js'></script>
+                  <tr>
+                    <th colspan='2'>Tanggal</th>
+                    <th >Keterangan</th>
+                    <th colspan='2'>Tagihan</th>
+                  </tr>
+
+
+              </table>
+
+            </div>
+          </div>
+          <input type='submit' value='Print Invoice!' formaction='/html/printinvoice' formtarget='_blank' class='btn2'>
+          <input type='submit' value='Sewa!' onclick='konfirbarang()' class='btn'>
+
+        </form>
+      </div>
+    </div>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script type='text/javascript' src='/function.js'></script>
+    <div class='copyright'> Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.</script>
+  </body>
+</html>

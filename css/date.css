@@ -1,0 +1,25 @@
+.fadate {
+    position: relative;
+    width: 150px; height: 20px;
+    color: white;
+}
+
+.fadate:before {
+    position: absolute;
+    top: 3px; left: 3px;
+    content: attr(data-date);
+    display: inline-block;
+    color: black;
+}
+
+.fadate::-webkit-datetime-edit, .fadate::-webkit-inner-spin-button, .fadate::-webkit-clear-button {
+    display: none;
+}
+
+.fadate::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    color: black;
+    opacity: 1;
+}

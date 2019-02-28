@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Form Penyewaan JG Gear</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <link rel='stylesheet' type='text/css' href='/form.css'>
+      <!--  -->
+
+    <div class='header'>
+      <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+      <div class='header-right'>
+        <a class='active' href='form.html'>Penyewaan</a>
+        <a href='return.html'>Pengembalian</a>
+        <div class="dropdown">
+          <span>Stok & Barang</span>
+          <div class="dropdown-content">
+            <a class='option' href='stock.html'>Cek Stok</a><br>
+            <a class='option' href='input.html'>Update Barang</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <span>Barang Rusak</span>
+          <div class="dropdown-content">
+            <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+            <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+          </div>
+        </div>
+        <a href='file.html'>Buat File Rekap</a>
+      </div>
+    </div>
+
+  </head>
+  <body>
+    <div class='main'>
+      <div class='container'>
+        <form action='/html/checkout.html' method='post' name='form1'>
+
+          <div class='row'>
+            <div class='col-50'>
+
+              <!-- info penjual -->
+              <table style='width:100%'>
+                <tr>
+                  <th rowspan='6'>
+                    <img src='/JG.png' alt='jg-logo' width='10%'>
+                    <h1>JG OUTDOOR GEAR RENTAL</h1>
+                    <h5>(biarkan ID jika pelanggan baru, isi nama,nomor hp dan tujuan dengan "-" jika pelanggan lama)</h5>
+                  </th>
+                  <th rowspan='6'>
+                    <img height='100' width='100' id='profile' src='/default-user.png' alt='profile-image' />
+                    <input hidden id='foto' name='foto' value='/default-user.png' required>
+                    <label>Foto Penyewa:</label>
+                    <input id='image' type='file' name='photo' placeholder='Photo' capture><br><br>
+                    <input type='checkbox' name='updatefoto'>Centang untuk gunakan foto lama
+                  </th>
+                  <tr>
+                    <th><label for='fname'><i class='fa fa-user'></i> ID Penyewa </label></th>
+                    <td><input  id='fname' name='idpelanggan' value='0' required></td>
+                  </tr>
+                  <tr>
+                    <th><label for='fname'><i class='fa fa-user'></i> Nama Penyewa</label></th>
+                    <td><input  id='fname' name='name' placeholder='Eka Gacong' value='-' required></td>
+                  </tr>
+                  <tr>
+                    <th><label for='pnumber'><i class='fa fa-envelope'></i> Nomor HP</label></th>
+                    <td><input   id='pnumber' name='phonenumber' placeholder='085794158166' value='-' required></td>
+                  </tr>
+                  <tr>
+                    <th><label for='email'><i class='fa fa-email'></i> Email</label></th>
+                    <td><input id='email' name='email' placeholder='odol@gmail.com' value='-'></td>
+                  </tr>
+                  <tr>
+                    <th><label for='dest'><i class='fa fa-destination'></i> Tujuan</label></th>
+                    <td><input  id='dst' name='destination' placeholder='Pataruman' required></td>
+                  </tr>
+              </tr>
+              </table>
+
+              <!-- info alat -->
+              <table style='width:100%'>
+                <tr>
+                  <th>Nama Alat</th>
+                  <th>Kuantiti</th>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear1'><option name='nul' >- : 0</option></select></td>
+                  <td class='numbers-row'><input type='number' name='barang1' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear2'><option name='nul'>- : 0</option></select></td>
+                  <td><input type='number' name='barang2' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear3'><option name='nul' >- : 0</option></select></td>
+                  <td><input type='number' name='barang3' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear4'><option name='nul'>- : 0</option></select></td>
+                  <td><input type='number' name='barang4' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear5'><option name='nul' >- : 0</option></select></td>
+                  <td><input type='number' name='barang5' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear6'><option name='nul'>- : 0</option></select></td>
+                  <td><input type='number' name='barang6' class='col-50' value='0'></td>
+                </tr>
+                <tr>
+                  <td><select class='col-50' name='gear7'><option name='nul'>- : 0</option></select></td>
+                  <td><input type='number' name='barang7' class='col-50' value='0'></td>
+                </tr>
+              </table>
+
+              <table style='width:100%'>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js'></script>
+                <tr>
+                  <th colspan='2'>Tanggal</th>
+                  <th >Jaminan</th>
+                  <th >Keterangan</th>
+
+                </tr>
+
+                <tr>
+                  <th>Tanggal Pengambilan</th>
+                  <td>
+                    <label for='rndate'>
+                      <input type='date' id='rndate' name='rentdate' data-date='' data-date-format='DD MMMM YYYY' value={start.toHtmlInput_datetime_local()} required>
+                    </label>
+                  </td>
+                  <td rowspan='2'>
+                    <input type='checkbox' name='ktp' value='ktp'>KTP<br>
+                    <input type='checkbox' name='sim' value='sim'>SIM<br>
+                    <input type='checkbox' name='ktm' value='ktm'>KTM<br>
+                    <input type='checkbox' name='kp' value='kartu pelajar'>KARTU PELAJAR<br>
+                    <input type='checkbox' name='dll' value='dll'>DLL<br>
+                  </td>
+                  <td rowspan='2'><input type='text' rows='10' cols='30' name='keterangan' value='-' required></td>
+                </tr>
+
+                <tr>
+                  <th>Tanggal Pengembalian</th>
+                  <td>
+                    <label for='rndate'>
+                      <input type='date' id='rtdate' name='returndate' data-date='' data-date-format='DD MMMM YYYY' value={start.toHtmlInput_datetime_local()} required>
+                    </label>
+                  </td>
+
+                </tr>
+                <tr>
+
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+        <input type='submit' onclick='checkFormData()' value='Continue to checkout' class='btn'>
+        </form>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='container'>
+        <h4>List Gear
+          <span class='price' style='color:black'>
+            <i class='fa fa-shopping-cart'></i>
+            <b>Harga</b>
+          </span>
+        </h4>
+        <div4>
+          <!--diisi list harga-->
+        </div4>
+        <hr>
+
+      </div>
+    </div>
+
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script type='text/javascript' src='/function.js'></script>
+    <script type='text/javascript' src='/menu.js'></script>
+
+    <div class='copyright'>Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.</div>
+  </body>
+</html>

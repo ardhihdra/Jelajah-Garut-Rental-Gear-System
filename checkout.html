@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Form Penyewaan JG Gear</title>
+    <link rel="stylesheet" type="text/css" href="/form.css">
+      <!--  -->
+
+    <div class="row" id="index">
+      <label class="col-50"> <a href="form.html">Penyewaan</a></label>
+      <label class="col-50"><a href="return.html">Pengembalian</a></label>
+      <label class="col-50"><a href="stock.html">Cek Stok</a></label>
+      <label class="col-50"><a href="input.html">Update Barang</a></label>
+      <label class="col-50"><a href="broke.html">Input Barang Rusak</a></label>
+      <label class="col-50"><a href="returnbroke.html">Pengembalian Barang Rusak</a></label>
+      <label class="col-50"><a href="file.html">Buat File Rekap</a></label>
+    </div>
+  </head>
+  <body>
+    <div class="row">
+
+      <div class="container">
+        <form action="/form.html" method='post' name='form1'>
+
+          <div class="row">
+            <div class="col-50">
+
+              <table style="width:100%" class="div1">
+                <tr>
+                  <th rowspan="5">
+                    <img src="/JG.png" alt="jg-logo" width="10%">
+                    <h1>Verifikasi Pesanan Anda</h1>
+                    <h4>Kembali ke form jika salah</h4>
+                  </th>
+                      <!-- info penyewa -->
+
+                </tr>
+              </table>
+
+              <table style="width:100%" class="div2">
+                <!-- info barang -->
+                  <tr>
+                    <th>Nama Alat</th>
+                    <th>Kuantiti</th>
+                    <th>Harga Sewa</th>
+                    <th>Lama Sewa</th>
+                    <th>Jumlah Harga</th>
+                  </tr>
+              </table>
+
+              <table style="width:100%" class="div3">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+                  <tr>
+                    <th colspan="2">Tanggal</th>
+                    <th >Keterangan</th>
+                    <th colspan='2'>Tagihan</th>
+                  </tr>
+
+
+              </table>
+
+            </div>
+          </div>
+          <input type="submit" value="Print Invoice!" formaction='/printinvoice' formtarget='_blank' class="btn2">
+          <input type="submit" value="Sewa!" onclick="konfirbarang()" class="btn">
+          <script type="text/javascript">
+            function konfirbarang(){
+              setTimeout(function() { alert("Data termasukan :))"); }, 3);
+            }
+            function printInvoice(){}
+          </script>
+        </form>
+      </div>
+    </div>
+
+  </body>
+</html>

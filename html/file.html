@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Download File
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/form.css">
+      <!-- ntar css di href ilangin  -->
+
+      <div class='header'>
+        <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+        <div class='header-right'>
+          <a class='active' href='form.html'>Penyewaan</a>
+          <a href='return.html'>Pengembalian</a>
+          <div class="dropdown">
+            <span>Stok & Barang</span>
+            <div class="dropdown-content">
+              <a class='option' href='stock.html'>Cek Stok</a><br>
+              <a class='option' href='input.html'>Update Barang</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span>Barang Rusak</span>
+            <div class="dropdown-content">
+              <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+              <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+            </div>
+          </div>
+          <a href='file.html'>Buat File Rekap</a>
+        </div>
+      </div>
+  </head>
+
+
+  <body>
+    <div class="sidenav">
+      <a href="file.html">Invoice</a>
+      <a href="penyewa-f.html">Penyewa</a>
+      <a href="gear-f.html">Gear</a>
+      <a href="broke-f.html">Gear Rusak</a>
+      <a href="tujuan-f.html">Tujuan</a>
+      <a href="pemasukan-f.html">Pemasukan</a>
+    </div>
+
+
+    <div class="sidemain">
+      <div class="form">
+
+      </div>
+      <!-- Page content
+
+      -->
+      <table class='content'>
+        <!--
+        input row nya -->
+      </table>
+
+      <script type="text/javascript">
+      var margin = {top: 20, right: 20, bottom: 30, left: 50},
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+      var valueline = d3.line()
+      .x(function(d) { return x(d.waktu_booking); })
+      .y(function(d) { return y(d.total_biaya); });
+
+      var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g").attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.csv("pemasukan.csv", function(error, data) {
+        if (error) throw error;
+
+        data.forEach(function(d) {
+          d.waktu_booking = d.waktu_booking;
+          d.total_biaya = +d.total_biaya;
+        });
+        console.log(data);
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.waktu_booking; }));
+        y.domain([0, d3.max(data, function(d) { return d.total_biaya; })]);
+
+        // Add the valueline path.
+        svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+
+        // Add the X Axis
+        svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+        // Add the Y Axis
+        svg.append("g")
+        .call(d3.axisLeft(y));
+
+      });
+
+      </script>
+    </div>
+    <div class="copyright">Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.</div>
+
+  </body>
+</html>

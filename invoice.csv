@@ -1,0 +1,6 @@
+ID,IDpelanggan,tujuan,waktu_booking,waktu_pengambilan,waktu_kembali,barang1,nbarang1,barang2,nbarang2,barang3,nbarang3,barang4,nbarang4,barang5,nbarang5,barang6,nbarang6,barang7,nbarang7,lama_sewa,total_biaya,uang_muka,sisa,kembali,diambil,denda,jaminan,keterangan
+56,27,pataruman,18/February/2019,19/February/2019,20/February/2019,Tenda GO kap2 1layer,1,-,0,-,0,-,0,-,0,-,0,-,0,1,25000,25000,0,1,1,0,ktp,asfvx aa
+57,28,papandayan,18/February/2019,19/February/2019,20/February/2019,kopmor gas portable,1,-,0,-,0,-,0,-,0,-,0,-,0,1,15000,15000,0,0,0,0,sim,sit
+58,29,pataruman,18/February/2019,19/February/2019,20/February/2019,Tenda GO kap2 1layer,2,-,0,-,0,-,0,-,0,-,0,-,0,1,50000,25000,25000,1,1,0,ktp,-
+59,29,-,18/February/2019,19/February/2019,20/February/2019,kopmor gas portable,1,-,0,-,0,-,0,-,0,-,0,-,0,1,15000,15000,0,0,0,10000,sim,-
+60,29,-,18/February/2019,19/February/2019,20/February/2019,Tenda GO java kap2 2layer,1,-,0,-,0,-,0,-,0,-,0,-,0,1,30000,30000,0,0,0,0,ktm,jancoy

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Input Gear</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <link rel="stylesheet" type="text/css" href="/form.css">
+      <!--  -->
+
+      <div class='header'>
+        <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+        <div class='header-right'>
+          <a class='active' href='form.html'>Penyewaan</a>
+          <a href='return.html'>Pengembalian</a>
+          <div class="dropdown">
+            <span>Stok & Barang</span>
+            <div class="dropdown-content">
+              <a class='option' href='stock.html'>Cek Stok</a><br>
+              <a class='option' href='input.html'>Update Barang</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span>Barang Rusak</span>
+            <div class="dropdown-content">
+              <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+              <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+            </div>
+          </div>
+          <a href='file.html'>Buat File Rekap</a>
+        </div>
+      </div>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+
+        <form action="/html/baranglama" method='post' name='form1'>
+            <h2>Update Barang Lama</h2>
+            <br>
+            <label>Pilih barang : <select class="gear" name="gear">
+                <option value="">- : 0</option>
+            </select></label><br>
+            <label>Input update Total Barang  (biarkan nol jika hanya berubah harga): </label>
+            <input type="number" id="input_qty" name="ngear" value=0 placeholder="misal 3">
+            <label>Input Perubahan Harga (biarkan nol jika tidak berubah) : </label>
+            <input type="text" name="ubahharga" value="0">
+            <input type="checkbox" name="hapus" value="1">Centang untuk menghapus barang<br><br>
+          <input type="submit" value="Update Barang" class="btn">
+        </form>
+
+        <form action="/html/inputbarang" method='post' name='form1'>
+          <br>
+          <div class="<col-75>">
+            <h2>Tambahkan Barang Baru</h2>
+            <br>
+            <label for="namabarang">Nama Barang</label>
+            <input type="text" id="namabarang" name="stuffname" placeholder="Pecut Kuda">
+
+            <label for="hargabarang"><i class=""></i>Harga Sewa/Hari</label>
+            <input type="text" id="hargabarang" name="stuffprice" placeholder="15000">
+
+            <label for="namabarang"><i class=""></i>Total Barang</label>
+            <input type="text" id="totalbarang" name="stuffqty" placeholder="100">
+          </div>
+          <input type="submit"  value="Tambahkan Barang" class="btn">
+          <script type="text/javascript">
+            function konfirbarang(){
+              alert("barang termasukkan ke database");
+            }
+          </script>
+        </form>
+      </div>
+      <div class="container">
+
+      </div>
+    </div>
+    <div class='copyright'> Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.</div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Barang Rusak</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/JG.ico" />
+    <link rel="stylesheet" type="text/css" href="/form.css">
+      <!-- ntar css di href ilangin  -->
+
+      <div class='header'>
+        <a class='logo'><img src='/JG.png' alt='jg-logo' width='40px' height='40px'></a>
+        <div class='header-right'>
+          <a class='active' href='form.html'>Penyewaan</a>
+          <a href='return.html'>Pengembalian</a>
+          <div class="dropdown">
+            <span>Stok & Barang</span>
+            <div class="dropdown-content">
+              <a class='option' href='stock.html'>Cek Stok</a><br>
+              <a class='option' href='input.html'>Update Barang</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <span>Barang Rusak</span>
+            <div class="dropdown-content">
+              <a class='option' href='broke.html'>Input Barang Rusak</a><br>
+              <a class='option' href='returnbroke.html'>Pengembalian Barang Rusak</a>
+            </div>
+          </div>
+          <a href='file.html'>Buat File Rekap</a>
+        </div>
+      </div>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <form action="/html/broke.html" method='post' name='form1'>
+          <div class="col-50">
+            <h1>Input Barang Rusak</h1>
+            <table>
+              <tr>
+                <th>Pilih barang : </th>
+                <td><select class='gear' name='gear'><option value="">- : 0</option></select></td>
+              </tr>
+              <tr>
+                <th>Total Barang Rusak : </th>
+                <td>
+                  <input type="number" id="input_qty" name="ngear" value=0 placeholder="misal 3" required>
+                </td>
+              </tr>
+              <tr>
+                <th>Penyervis: </th>
+                <td>
+                  <input type="text" name="servis" value="-" required>
+                </td>
+              </tr>
+              <tr>
+                <th>Biaya (Rp)</th>
+                <td>
+                  <input type="text" name="biaya" value="0" required>
+                </td>
+              </tr>
+              <tr>
+                <th>Tanggal Diservis : </th>
+                <td>
+                  <input type='date' name='tanggalservis' required>
+                </td>
+              </tr>
+              <tr>
+                <th>Keterangan : </th>
+                <td>
+                  <input type='text' name='keterangan' value='-' required>
+                </td>
+              </tr>
+              <tr>
+                <th>Centang untuk menghapus barang dari database</th>
+                <td>
+                  <input type="checkbox" name="hapus" value="1"><br><br>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <input type="submit" value="Tambahkan Barang" class="btn">
+        </form>
+      </div>
+
+    </div>
+    <div class="copyright">
+      Copyright CV.Jelajah Garut (c) 2018 Copyright Holder All Rights Reserved.
+    </div>
+  </body>
+</html>

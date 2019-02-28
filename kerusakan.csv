@@ -1,0 +1,8 @@
+ID,nama_barang_rusak,penyervis,total_barang_rusak,tanggal_servis,keterangan,kembali,biaya
+11,Tenda GO java kap2 2layer,abah,1,Fri Jan 11 2019 00:00:00 GMT+0700 (Western Indonesia Time),ada keterangan,1,10000
+12,Tenda GO java kap2 2layer,mang ukan,1,Fri Jan 11 2019 00:00:00 GMT+0700 (Western Indonesia Time),rusak ,1,500
+13,Tenda GO java kap2 2layer,abah,1,Thu Jan 10 2019 00:00:00 GMT+0700 (Western Indonesia Time),10,1,1
+14,Tenda GO java kap2 2layer,abah,1,Sat Jan 12 2019 00:00:00 GMT+0700 (Western Indonesia Time),nambah biaya euy,1,10000
+15,Tenda GO kap2 1layer,-,1,Sat Jan 12 2019 00:00:00 GMT+0700 (Western Indonesia Time),-,1,0
+16,Tenda GO java kap2 2layer,abah,2,Wed Feb 06 2019 00:00:00 GMT+0700 (Western Indonesia Time),-,0,5000
+17,Tenda GO kap2 1layer,Om Akew,1,Mon Feb 18 2019 00:00:00 GMT+0700 (Western Indonesia Time),dicuci pake molto,0,10000
