@@ -97,7 +97,7 @@ app.post('/html/form.html', urlencodedParser, function(req,res){
   //post bakal nerima data (data uang muka dan sisa) yang tersubmit dan dikirim dari tag html form cuk
   var con = connect();
   var pageform = fs.readFileSync('html/form.html','utf-8');
-  var $ = append(page_template);
+  var $ = append(pageform);
 
   con.connect(function(err){
     if(err) throw err;
@@ -118,6 +118,8 @@ app.post('/html/form.html', urlencodedParser, function(req,res){
         if(err) throw err;
         console.log("Pelanggan berhasil dimasukan ke database pelanggan");
       });
+      var updateid = "UPDATE Invoice SET IDpelanggan=(SELECT MAX(IDpelanggan) FROM Pelanggan) ORDER BY ID DESC LIMIT 1";
+
     } else {
       var pelanggan = "UPDATE Pelanggan SET nyewa=nyewa+1,";
       pelanggan += "name='"+req.body.name+"',email='"+req.body.email+"',nomor_hp='"+req.body.phonenumber+"',foto='"+req.body.foto+"'";
@@ -126,6 +128,8 @@ app.post('/html/form.html', urlencodedParser, function(req,res){
         if(err) throw err;
         console.log("Pelanggan berhasil diupdate");
       });
+      var updateid = "UPDATE Invoice SET IDpelanggan="+req.body.idpelanggan+" ORDER BY ID DESC LIMIT 1";
+
     }
 
     var kirimbarang = "INSERT INTO Invoice";
@@ -155,15 +159,14 @@ app.post('/html/form.html', urlencodedParser, function(req,res){
         req.body.barang1,req.body.barang2,req.body.barang3,req.body.barang4,req.body.barang5,req.body.barang6,req.body.barang7,
         lamasewa,req.body.total,req.body.dp,(parseInt(req.body.total)-parseInt(req.body.dp)),0,taken,req.body.jaminan,req.body.keterangan,0]
     ];
-    console.log(kirimbarang);
+    //console.log(kirimbarang);
     //console.log("barang2 nya"+value);
     //console.log(req.body.rentdate);;
     con.query(kirimbarang, [value],function(err, result){
       if(err) throw err;
       console.log("barang berhasil dimasukan ke database invoice");
     });
-    kirimbarang = "UPDATE Invoice v SET IDpelanggan=(SELECT MAX(IDpelanggan) FROM Pelanggan) ORDER BY ID DESC LIMIT 1";
-    con.query(kirimbarang, function(err, result){
+    con.query(updateid, function(err, result){
       if(err) throw err;
       console.log("IDpelanggan berhasil dimasukan ke database invoice");
     });
@@ -212,15 +215,15 @@ app.post('/html/printinvoice', urlencodedParser, function(req,res){
   var pageform = fs.readFileSync('html/printinvoice.html','utf-8');
   //var pageform = fs.readFileSync('checkout.html','utf-8');
 
-  var $ = append(page_template);
+  var $ = append(pageform);
   //console.log(req.body.name);
   con.connect(function(err){
     if(err)throw err;
 
-    con.query("SELECT * FROM Invoice leftouter join Pelanggan ORDER BY ID DESC LIMIT  1",function(err, result, fields){
+    con.query("SELECT * FROM Invoice natural join Pelanggan ORDER BY ID DESC, IDpelanggan DESC LIMIT  1",function(err, result, fields){
       if(err)throw err;
       //dbprofil
-	    console.log(result);
+	    //console.log(result);
       var inv = '';
       if(result.length==0){
 		      var id=1;
@@ -236,8 +239,8 @@ app.post('/html/printinvoice', urlencodedParser, function(req,res){
       } else {
         idpelanggan=req.body.idpelanggan;
       }
-      console.log(req.body);
-      console.log(req.body.foto);;
+      //console.log(req.body);
+      //console.log(req.body.foto);;
       inv += "<div class='invoice-box'><table cellpadding='0' cellspacing='0'><tr class='top'>";
       inv += "<td colspan='2'><table><tr><td class='title'><img src='/JG.png' style='width:100%; max-width:100px;'>";
       inv += "<img src='"+req.body.foto+"' style='width:100%; max-width:100px;' alt='profile-image'></td>";
@@ -331,7 +334,7 @@ app.post('/html/checkout.html', urlencodedParser, function(req,res){
   con.connect(function(err){
     if(err) throw err;
     //console.log("isi body: " + req.body.foto);
-    console.log("check");
+    //console.log("check");
     if(req.body.ktp!=undefined){jaminan.push(req.body.ktp);}
     if(req.body.sim!=undefined){jaminan.push(req.body.sim);}
     if(req.body.ktm!=undefined){jaminan.push(req.body.ktm)}
@@ -375,7 +378,7 @@ app.post('/html/checkout.html', urlencodedParser, function(req,res){
       +  "<h4>Kembali ke form jika salah</h4>"
       +"</th>"
       + "<th rowspan='6'>"
-      +  "<label class='header'>Foto Penyewa:</label>"
+      +  "<label>Foto Penyewa:</label>"
       +  "<img height='100' width='100' id='profile' src='"+foto+"' alt='profile-image' />"
       +  "<input hidden id='foto' name='foto' value='"+foto+"' required>";
       if(req.body.updatefoto){
@@ -394,7 +397,7 @@ app.post('/html/checkout.html', urlencodedParser, function(req,res){
       profil += " <td><input  type='text' id='dst' name='destination' value='"+req.body.destination+"' required></td></tr>";
       profil += "<tr><th><label for='email'><i class='fa fa-email'></i> Email</label></th>";
       profil +=  "<td><input id='email' type='text' name='email' value='"+email+"'></td></tr></tr>";
-      console.log(profil);
+      //console.log(profil);
       $(profil).appendTo('.div1');
       var a = req.body.gear1.split(" : ")[0];
       //console.log(req.body.gear4.split(" : ")[1]);
@@ -790,7 +793,7 @@ app.get('/html/stock.html', urlencodedParser, function(req, res){
     function f(a){
       cekbarang.value=a;
     }
-    console.log(cekbarang.value);
+    //console.log(cekbarang.value);
     //console.log("ini hasil");
     //console.log(hasil);
     //console.log($('html').html());
@@ -829,7 +832,7 @@ app.post('/html/check_table.html', urlencodedParser, function(req, res){
     ceksql += " AND kembali=0";
     //console.log(ceksql);
     con.query(ceksql, function(err,result,fields){
-      console.log(result);
+      //console.log(result);
       //console.log(extractday(new Date(result[0].waktu_kembali)));
       var rentdate; var returndate;
       var lamasewa;
@@ -916,7 +919,7 @@ app.post('/html/check_today', urlencodedParser, function(req, res){
     ceksql += " AND kembali=0";
     //console.log(ceksql);
     con.query(ceksql, function(err,result,fields){
-      console.log(result);
+      //console.log(result);
       //console.log(extractday(new Date(result[0].waktu_kembali)));
       var rentdate; var returndate;
       var lamasewa;
@@ -1035,7 +1038,7 @@ app.post('/html/baranglama',urlencodedParser,function(req,res){
         sql += "harga_sewa="+req.body.ubahharga;
       }
       sql += " WHERE nama_barang='"+gear+"'"; //
-      console.log(sql);
+      //console.log(sql);
     }
     con.query(sql, function(err, result){if(err) throw err;});
 
@@ -1163,8 +1166,8 @@ app.post('/html/broke.html',urlencodedParser, function(req,res){
     } else {
       var sqll = "INSERT INTO BarangRusak (nama_barang_rusak, total_barang_rusak,penyervis,tanggal_servis, keterangan,biaya,kembali) VALUES ?";
       var value = [[gear,parseInt(req.body.ngear),req.body.servis,new Date(req.body.tanggalservis),req.body.keterangan,parseInt(req.body.biaya),0]];
-      console.log(sqll);
-      console.log(value);
+      //console.log(sqll);
+      //console.log(value);
       con.query(sqll, [value], function(err, result){if(err) throw err;});
       var update="UPDATE Barang SET total_barang="+(ngear-parseInt(req.body.ngear))+" WHERE nama_barang='"+gear+"'";
       con.query(update);
@@ -1313,8 +1316,11 @@ app.get('/html/file.html', urlencodedParser, function(err, res){
       const mydata = [];
       for(let i=0;i<fields.length;i++){
         if(fields[i].name!=undefined) field[i]=fields[i].name;
+      }
+      for(let i=0;i<result.length;i++){
         if(result[i]!=undefined) mydata[i]=values(result[i]);
       }
+
       var writer = csvWriter({ headers: field})
       writer.pipe(fs.createWriteStream('invoice.csv'))
       for(let i = 0; i < mydata.length; i++){
@@ -1406,9 +1412,12 @@ app.get('/html/penyewa-f.html', urlencodedParser, function(req,res){
       //console.log(result);
       const field = [];
       const mydata = [];
+      //console.log(values(result[1]));
       for(let i=0;i<fields.length;i++){
-        if(fields[i].name!=undefined) field[i]=fields[i].name;
-        if(result[i]!=undefined) mydata[i]=values(result[i]);
+        if(fields[i].name!=undefined){field[i]=fields[i].name;}
+      }
+      for(let i=0;i<result.length;i++){
+        if(result[i]!=undefined){ mydata[i]=values(result[i]);}
       }
       //console.log(field);
       //console.log(mydata);
@@ -1463,6 +1472,8 @@ app.get('/html/gear-f.html', urlencodedParser, function(req,res){
       const mydata = [];
       for(let i=0;i<fields.length;i++){
         if(fields[i].name!=undefined) field[i]=fields[i].name;
+      }
+      for(let i=0;i<result.length;i++){
         if(result[i]!=undefined) mydata[i]=values(result[i]);
       }
       //console.log(field);
@@ -1518,6 +1529,8 @@ app.get('/html/broke-f.html', urlencodedParser, function(req,res){
       const mydata = [];
       for(let i=0;i<fields.length;i++){
         if(fields[i].name!=undefined) field[i]=fields[i].name;
+      }
+      for(let i=0;i<result.length;i++){
         if(result[i]!=undefined) mydata[i]=values(result[i]);
       }
       //console.log(field);
@@ -1575,6 +1588,8 @@ app.get('/html/tujuan-f.html', urlencodedParser, function(req,res){
       const mydata = [];
       for(let i=0;i<fields.length;i++){
         if(fields[i].name!=undefined) field[i]=fields[i].name;
+      }
+      for(let i=0;i<result.length;i++){
         if(result[i]!=undefined) mydata[i]=values(result[i]);
       }
       //console.log(field);
@@ -1632,6 +1647,8 @@ app.get('/html/pemasukan-f.html', urlencodedParser, function(req,res){
       const mydata = [];
       for(let i=0;i<fields.length;i++){
         if(fields[i].name!=undefined) field[i]=fields[i].name;
+      }
+      for(let i=0;i<result.length;i++){
         if(result[i]!=undefined) mydata[i]=values(result[i]);
       }
       //console.log(field);
@@ -1680,13 +1697,6 @@ app.get('/html/pemasukan-f.html', urlencodedParser, function(req,res){
   });
 });
 
-app.get('/html/pemasukan.csv', urlencodedParser, function(req,res){
-  console.log("graph test");
-  // format the data
-
-
-});
-
 app.post('/html/invoice', urlencodedParser, function(req, res){
   //donwload file lalu kemblai
   res.download("invoice.csv", "invoice_gear.csv");
@@ -1709,7 +1719,7 @@ app.post('/html/gearrusak', urlencodedParser, function(err, res){
 
 app.post('/html/penyewa', urlencodedParser, function(err, res){
   //donwload file lalu kembali
-  res.download("profil.csv", "profil_penyewa.csv");
+  res.download("penyewa.csv", "profil_penyewa.csv");
 });
 
 app.post('/html/frequentdest', urlencodedParser, function(err, res){
